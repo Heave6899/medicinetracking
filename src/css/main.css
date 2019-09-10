@@ -1,0 +1,10 @@
+body{
+	background-color: #31889A;
+	align-items: center; 
+}
+div.container{
+	background-repeat: no-repeat;
+	align-content: center;
+	padding-left:3%;	
+	padding-right: 3%;
+}

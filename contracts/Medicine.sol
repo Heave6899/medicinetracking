@@ -28,4 +28,12 @@ contract Medicine {
   function getexpdate(uint i) public view returns(string memory){
     return medicines[i].expdate;
   }
+  function search(string memory _name) public view returns(string memory){
+    for(uint i = 1; i <= count; i++)
+    {
+      if(keccak256(abi.encodePacked((medicines[i].name))) == keccak256(abi.encodePacked((_name)))){
+        return medicines[i].expdate;
+      }
+    }
+  }
 }
