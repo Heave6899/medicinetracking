@@ -3,11 +3,27 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "webpack-dev-server",
+    "dev": "lite-server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {},
-  "devDependencies": {},
-  "description": ""
+  "devDependencies": {
+    "lite-server": "^2.5.4",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "description": "",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heave6899/medicinetracking.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Heave6899/medicinetracking/issues"
+  },
+  "homepage": "https://github.com/Heave6899/medicinetracking#readme"
 }
