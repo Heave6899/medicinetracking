@@ -4,6 +4,7 @@ App = {
   account: '0x0',
 
   init: function(){
+    $("#content").hide();
     return App.initWeb3();
   },
 
@@ -14,17 +15,50 @@ App = {
     } else {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       web3 = new Web3(App.web3Provider);
+      //web3.eth.getAccounts(console.log);
     }
     return App.initContract();
   },
 
   initContract: function() {
+    web3.eth.getCoinbase(function(err, account) {
+      if (err === null) {
+        App.account = account;
+        $("#accountAddress").html("Your Account: " + account);
+      }
+    });
     $.getJSON("Medicine.json", function(medicine) {
       App.contracts.Medicine = TruffleContract(medicine);
       App.contracts.Medicine.setProvider(App.web3Provider);
     });
   },
-
+  addMed:function(){
+    web3.eth.getCoinbase(function(err, account) {
+      if (err === null) {
+        App.account = account;
+        $("#accountAddress").html("Your Account: " + account);
+      }
+    });
+    var name = $('#medname').val();
+    var date = $('#meddate').val();
+    var expdate = $('#medexpdate').val();
+    //console.log(name+" "+date);
+    if(date>expdate){
+      alert("Invalid Expiry Date, cannot be less than manufacturing date");
+      $("#formadd").trigger("reset");
+    }
+    else{
+    var namestr = name.toString();
+    var datestr = date.toString();
+    var expdatestr = expdate.toString();
+    console.log(datestr);
+    App.contracts.Medicine.deployed().then(function(instance){
+      return instance.addMedicine(namestr, expdatestr, datestr, {from: App.account, gas: 2000000 });
+    }).catch(function(err){
+      console.error(err);
+    });
+  }
+  },
   searchMed: function(){
     var instance;
     var search = $('#searchbar').val();
@@ -32,6 +66,7 @@ App = {
       instance =_instance;
       return instance.searchexpdate(search);
     }).then(function(medexpdate){
+      $("#content").show();
       $("#name").html($('#searchbar').val());
       $("#expdate").html(medexpdate);
     }).catch(function(err){
