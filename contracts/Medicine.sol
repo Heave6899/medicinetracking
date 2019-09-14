@@ -10,13 +10,14 @@ contract Medicine {
         string date;
     }
   mapping(uint => Medicines) public medicines;
+  //mapping(address=>bool) public medicalorg;
   uint public count;
   function addMedicine(string memory _name, string memory _expdate,string memory _date) public {
         count ++;
         medicines[count] = Medicines(count, _name, _expdate, _date);
     }
     constructor () public {
-        addMedicine("Medicine 1","06-08-2019","23-05-2017");
+        addMedicine("Medicine 1","2019-02-28","2017-03-20");
         addMedicine("Medicine 2","04-05-2020","20-02-2016");
     }
   /*function set(string memory _h,string memory _date) public{
