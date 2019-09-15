@@ -40,6 +40,7 @@ App = {
       }
     });
     var name = $('#medname').val();
+    var mfg = $('#manufacturer').val();
     var date = $('#meddate').val();
     var expdate = $('#medexpdate').val();
     //console.log(name+" "+date);
@@ -51,41 +52,51 @@ App = {
     var namestr = name.toString();
     var datestr = date.toString();
     var expdatestr = expdate.toString();
+    $("#formadd").trigger("reset");
     console.log(datestr);
     App.contracts.Medicine.deployed().then(function(instance){
-      return instance.addMedicine(namestr, expdatestr, datestr, {from: App.account, gas: 2000000 });
+      return instance.addMedicine(mfg,namestr, expdatestr, datestr, {from: App.account, gas: 2000000 });
     }).catch(function(err){
       console.error(err);
     });
   }
   },
-  searchMed: function(){
+  
+  search: function(){
     var instance;
+    var med = $("medicines");
+    med.empty();
     var search = $('#searchbar').val();
     App.contracts.Medicine.deployed().then(function(_instance){
-      instance =_instance;
-      return instance.searchexpdate(search);
-    }).then(function(medexpdate){
-      $("#content").show();
-      $("#name").html($('#searchbar').val());
-      $("#expdate").html(medexpdate);
-    }).catch(function(err){
-      console.error(err);
-    });
-    return App.searchdate();
-  },
-
-  searchdate: function(){
-    var search = $('#searchbar').val();
-    App.contracts.Medicine.deployed().then(function(instance){
-      return instance.searchdate(search);
-    }).then(function(meddate){
-      $("#date").html(meddate);
-    }).catch(function(err){
-      console.error(err);
-    });
+    instance =_instance;
+    return instance.count();
+    }).then(function(count){
+      $("#medicinedetails").html("");
+      for(var i=0;i<=count;i++)
+      {
+        instance.medicines(i).then(function(medicine){
+          var mfg = medicine[1];
+          var name = medicine[2];
+          var expdate = medicine[3];
+          var today = new Date();
+          var parts = expdate.split('-');
+          var mydate = new Date(parts[0], parts[1] - 1, parts[2]);
+          var date = medicine[4];
+          var expiry = "No";
+          if(mydate<today){expiry="Yes";}
+          var medtemplate = "<tr><th>" + mfg + "</th><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td></tr>"
+          console.log(name);
+          if(search == name){
+            $("#content").show();
+            $("#medicinedetails").append(medtemplate);
+          }
+        });
+      }
+    })
   }
 };
+
+
 
 $(function() {
   $(window).load(function() {

@@ -80,22 +80,21 @@
           <hr class="botm-line">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris cillum.</p>
         </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-7 col-sm-5">
           
             <!-- Search form -->
 <div class="md-form mt-0">
   <form class="form-inline my-2 my-lg-0" style="padding: 3%;">
-  <input class="form-control" type="text" placeholder="Search" id="searchbar"aria-label="Search"> <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="App.searchMed(); return false;">Search</button><!-- searchbar --></form>
+  <input class="form-control" type="text" placeholder="Search" id="searchbar"aria-label="Search"> <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="App.search(); return false;">Search</button><!-- searchbar --></form>
   <table class="table table-dark" style="padding: 30%;" id="content">
-  	<tr><th>Medicine Name</th>
+  	<tr>
+      <th>Manufacturer</th>
+      <th>Medicine Name</th>
       <th>Date</th>
       <th>Exp Date</th>
+      <th>Expired?</th>
     </tr>
-  	<tr>
-  		<td><p id="name"></p></td>
-      <td><p id="date"></p></td>
-      <td><p id="expdate"></p></td>
-  	</tr>
+    <tbody id="medicinedetails"></tbody>
   </table>
 </div>
           </div>
@@ -116,6 +115,12 @@
         <!--- above is add medicine left column, below is right form medicine -->
         <div class="col-md-6 col-sm-12 bor-right">
           <form id="formadd">
+              <div class="form-group row">
+                  <label for="manufacturer" class="col-sm-5 col-form-label">Manufacturer</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="manufacturer" placeholder="Manufacturer Name" required> 
+                  </div>
+              </div>
             <div class="form-group row">
                 <label for="medname" class="col-sm-5 col-form-label">Name of Medicine</label>
                 <div class="col-sm-7">

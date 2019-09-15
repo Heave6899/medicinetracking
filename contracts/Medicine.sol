@@ -5,6 +5,7 @@ contract Medicine {
   //string h; string date; uint count = 0;
   struct Medicines {
         uint id;
+        string mfg;
         string name;
         string expdate;
         string date;
@@ -12,13 +13,13 @@ contract Medicine {
   mapping(uint => Medicines) public medicines;
   //mapping(address=>bool) public medicalorg;
   uint public count;
-  function addMedicine(string memory _name, string memory _expdate,string memory _date) public {
+  function addMedicine(string memory _mfg,string memory _name, string memory _expdate,string memory _date) public {
         count ++;
-        medicines[count] = Medicines(count, _name, _expdate, _date);
+        medicines[count] = Medicines(count,_mfg, _name, _expdate, _date);
     }
     constructor () public {
-        addMedicine("Medicine 1","2019-02-28","2017-03-20");
-        addMedicine("Medicine 2","04-05-2020","20-02-2016");
+        addMedicine("Manufacturer 1","Medicine 1","2019-02-28","2017-03-20");
+        addMedicine("Manufacturer 2","Medicine 2","2020-05-04","2016-02-20");
     }
   /*function set(string memory _h,string memory _date) public{
     h = _h;
