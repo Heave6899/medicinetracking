@@ -42,9 +42,11 @@
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#banner">Home</a></li>
-                <li class=""><a href="#search">Search</a></li>
-                <li class=""><a href="#form">Add Medicine</a></li>
-                <li class=""><a href="#about">About</a></li>
+                <li class=""><a href="#search">Search Manufacturer</a></li>
+                <li class=""><a href="#searchclient">Search Client</a></li>
+                <li class=""><a href="#formm">Add Manufacturer</a></li>
+                <li class=""><a href="#formc">Add Client</a></li>
+                <li class=""><a href="#cta-2">About</a></li>
                 <li class=""><a href="#contact">Contact</a></li>
               </ul>
             </div>
@@ -59,8 +61,8 @@
             </div>
             <div class="banner-text text-center">
               <h1 class="white">Blockchain at it's best!!</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br>tempor incididunt ut labore et dolore magna aliqua.</p>
-              <a href="#contact" class="btn btn-appoint">Make an Appointment.</a>
+              <p>Something. New.</p>
+              <a href="#contact" class="btn btn-appoint">Remarks.</a>
             </div>
             <div class="overlay-detail text-center">
               <a href="#search"><i class="fa fa-angle-down"></i></a>
@@ -71,23 +73,24 @@
     </div>
   </section>
   <!--/ banner-->
-  <!--search-->
+  <!--search mfg-->
   <section id="search" class="section-padding">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 col-sm-4">
-          <h2 class="ser-title">Search For Medicine</h2>
+        <div class="col-md-4 col-sm-5">
+          <h2 class="ser-title" style="padding: 3%;">Search For MFG.</h2>
           <hr class="botm-line">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris cillum.</p>
+          <p style="text-align: justify">Type in the exact name of the medicine to find if the manufacturers of the given medicine is available in the database</p>
         </div>
         <div class="col-md-7 col-sm-5">
           
             <!-- Search form -->
 <div class="md-form mt-0">
   <form class="form-inline my-2 my-lg-0" style="padding: 3%;">
-  <input class="form-control" type="text" placeholder="Search" id="searchbar"aria-label="Search"> <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="App.search(); return false;">Search</button><!-- searchbar --></form>
+  <input class="form-control" type="text" placeholder="Search manufacturer" id="searchbar"aria-label="Search"> <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="App.searchmfg(); return false;">Search</button><!-- searchbar --></form>
   <table class="table table-dark" style="padding: 30%;" id="content">
   	<tr>
+      <th>Batch Id</th>
       <th>Manufacturer</th>
       <th>Medicine Name</th>
       <th>Date</th>
@@ -102,20 +105,61 @@
       </div>
     </div>
   </section>
-  <!--/ service-->
+
+  <!--/search mfg-->
+  <!--search client-->
+  <section id="searchclient" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <h2 class="ser-title">Search For Client</h2>
+            <hr class="botm-line">
+            <p style="text-align: justify;">Type in the exact name of the medicine to find if all the clients of the given medicine is available in the database</p>
+          </div>
+          <div class="col-md-7 col-sm-5">
+            
+              <!-- Search form -->
+  <div class="md-form mt-0">
+    <form class="form-inline my-2 my-lg-0" style="padding: 3%;">
+    <input class="form-control" type="text" placeholder="Search" id="searchbarcli" aria-label="Search"> <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="App.searchclient(); return false;">Search</button><!-- searchbar --></form>
+    <table class="table table-dark" style="padding: 30%;" id="content-cli">
+      <tr>
+        <th>Batch Id</th>
+        <th>Client Name</th>
+        <th>Medicine Name</th>
+        <th>Date</th>
+        <th>Exp Date</th>
+        <th>Expired?</th>
+      </tr>
+      <tbody id="medicinedetailsc"></tbody>
+    </table>
+  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!--/ search client-->
   <!--about-->
-  <section id="form" class="section-padding">
+  <section id="formm" class="section-padding">
     <div class="container">
       <div class="row">
         <div class="col-md-4 col-sm-4 bor-left">
-          <h2>Add a Medicine!</h2>
+          <h2>Add a Manufacturer!</h2>
           <hr class="botm-line">
+          <p style="text-align: justify;">Enter the details of form and click confirm transaction button to add the manufacturer to the blockchain.</p>
         </div>
 
         <!--- above is add medicine left column, below is right form medicine -->
         <div class="col-md-6 col-sm-12 bor-right">
           <form id="formadd">
               <div class="form-group row">
+                  <label for="meduid" class="col-sm-5 col-form-label">Batch Id</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="meduid" placeholder="Batch Id" required>
+                  </div>
+              </div>  
+            <div class="form-group row">
                   <label for="manufacturer" class="col-sm-5 col-form-label">Manufacturer</label>
                   <div class="col-sm-7">
                       <input type="text" class="form-control" id="manufacturer" placeholder="Manufacturer Name" required> 
@@ -149,76 +193,65 @@
       </form>
     </div>
   </section>
- 
-  <!--/ about-->
-  <!--doctor team-->
-  <section id="about" class="section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="ser-title">Meet Our Doctors!</h2>
-          <hr class="botm-line">
-        </div>
-        <div class="col-md-3 col-sm-3 col-xs-6">
-          <div class="thumbnail">
-            <img src="img/doctor1.jpg" alt="..." class="team-img">
-            <div class="caption">
-              <h3>Jessica Wally</h3>
-              <p>Doctor</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
-            </div>
+  <!--/form mfg-->
+  <!--form client-->
+  <section id="formc" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 bor-left">
+            <h2>Add a Client!</h2>
+            <hr class="botm-line">
+            <p style="text-align: justify;">Enter the details of form and click confirm transaction button to add the client to the blockchain.</p>
           </div>
-        </div>
-        <div class="col-md-3 col-sm-3 col-xs-6">
-          <div class="thumbnail">
-            <img src="img/doctor2.jpg" alt="..." class="team-img">
-            <div class="caption">
-              <h3>Iai Donas</h3>
-              <p>Doctor</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
-            </div>
+  
+          <!--- above is add medicine left column, below is right form medicine -->
+          <div class="col-md-6 col-sm-12 bor-right">
+            <form id="formaddc">
+                <div class="form-group row">
+                    <label for="meduidc" class="col-sm-5 col-form-label">Batch Id</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="meduidc" placeholder="Batch Id" required>
+                    </div>
+                </div>  
+              <div class="form-group row">
+                    <label for="client" class="col-sm-5 col-form-label">Name of the Client</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="client" placeholder="Client Name" required> 
+                    </div>
+                </div>
+              <div class="form-group row">
+                  <label for="mednamec" class="col-sm-5 col-form-label">Name of Medicine</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="mednamec" placeholder="Medicine Name" required> 
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label for="meddatec" class="col-sm-5 col-form-label">Date Mfg.</label>
+                  <div class="col-sm-7">
+                      <input type="date" class="form-control" id="meddatec" required>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label for="medexpdatec" class="col-sm-5 col-form-label">Date Exp.</label>
+                  <div class="col-sm-7">
+                      <input type="date" class="form-control" id="medexpdatec" required>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <div class="col-sm-10 offset-sm-2">
+                      <button type="button" class="btn btn-primary" onClick="App.addClient();">Confirm Transaction</button>
+                  </div>
+              </div>
+              <p id="accountAddressclient"></p>
           </div>
-        </div>
-        <div class="col-md-3 col-sm-3 col-xs-6">
-          <div class="thumbnail">
-            <img src="img/doctor3.jpg" alt="..." class="team-img">
-            <div class="caption">
-              <h3>Amanda Denyl</h3>
-              <p>Doctor</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-3 col-xs-6">
-          <div class="thumbnail">
-            <img src="img/doctor4.jpg" alt="..." class="team-img">
-            <div class="caption">
-              <h3>Jason Davis</h3>
-              <p>Doctor</p>
-              <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
-  </section>
-  <!--/ doctor team-->
+    </section>
+
+
+  <!--/ about-->
+
   <!--cta 2-->
   <section id="cta-2" class="section-padding">
     <div class="container">
@@ -255,7 +288,7 @@
         </div>
         <div class="col-md-8 col-sm-8 marb20">
           <div class="contact-info">
-            <h3 class="cnt-ttl">Having Any Query! Or Book an appointment</h3>
+            <h3 class="cnt-ttl">If you have any remarks, shoot!</h3>
             <div class="space"></div>
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
@@ -278,7 +311,7 @@
               </div>
 
               <div class="form-action">
-                <button type="submit" class="btn btn-form">Send Message</button>
+                <button type="submit" class="btn btn-form" onClick="return false;">Send Message</button>
               </div>
             </form>
           </div>
@@ -306,9 +339,9 @@
             </div>
             <div class="info-sec">
               <ul class="quick-info">
-                <li><a href="index.html"><i class="fa fa-circle"></i>Home</a></li>
-                <li><a href="#service"><i class="fa fa-circle"></i>Service</a></li>
-                <li><a href="#contact"><i class="fa fa-circle"></i>Appointment</a></li>
+                <li><a href="#myPage"><i class="fa fa-circle"></i>Home</a></li>
+                <li><a href="#search"><i class="fa fa-circle"></i>Search Manufacturer</a></li>
+                <li><a href="#searchclient"><i class="fa fa-circle"></i>Search Client</a></li>
               </ul>
             </div>
           </div>
