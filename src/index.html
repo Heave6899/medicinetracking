@@ -20,6 +20,7 @@
 <script src="js/jquery.min.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="js/custom.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="contactform/contactform.js"></script>
       <script src="js/truffle-contract.js"></script>
 
@@ -251,7 +252,54 @@
 
 
   <!--/ about-->
+  <!--shipping-->
+  <section id="formm" class="section-padding">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-4 col-sm-4 bor-left">
+          <h2>Add a Shipment company!</h2>
+          <hr class="botm-line">
+          <p style="text-align: justify;">Enter the details of form and click confirm transaction button to add the shipment company to the blockchain.</p>
+        </div>
 
+        <!--- above is add medicine left column, below is right form medicine -->
+        <div class="col-md-6 col-sm-12 bor-right">
+          <form id="formadd" style="align-content: center;">
+              <div class="form-group row">
+                  <label for="namecompany" class="col-sm-5 col-form-label">Name of the Company</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="namecompany" placeholder="Name of company" required>
+                  </div>
+              </div>  
+            <div class="form-group row">
+                  <label for="contact" class="col-sm-5 col-form-label">Customer Care Contact</label>
+                  <div class="col-sm-7">
+                      <input type="tel" class="form-control" id="contact" placeholder="(+91)99000-50000" required> 
+                  </div>
+              </div>
+            <div class="form-group row">
+                <label for="tempcontrol" class="col-sm-5 col-form-label">Temperature controlled shipment available</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="tempcontrol" placeholder="Y/N" pattern="[yYnNYesNo]" required> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="days" class="col-sm-5 col-form-label">Typical Delivery Time<br>(in Days)</label>
+                <div class="col-sm-7">
+                    <input type="number" class="form-control" id="days" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="button" class="btn btn-primary" onClick="App.addship();">Confirm Transaction</button>
+                </div>
+            </div>
+            <p id="accountAddress"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!--/shipping-->
   <!--cta 2-->
   <section id="cta-2" class="section-padding">
     <div class="container">

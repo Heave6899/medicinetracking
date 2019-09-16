@@ -12,6 +12,7 @@
   "dependencies": {},
   "devDependencies": {
     "lite-server": "^2.5.4",
+    "truffle-wallet-provider": "0.0.5",
     "webpack-dev-server": "^3.8.0"
   },
   "description": "",
