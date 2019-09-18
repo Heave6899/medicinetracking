@@ -66,6 +66,7 @@ contract Medicine {
     }
   }
   function addShipcomp(string memory _name,string memory _contact, string memory _tempcontrol, string memory _typicaldays) public{
+    flag3 = false;
     if(countcomp == 0)
     {
       countcomp++;
@@ -86,15 +87,15 @@ contract Medicine {
     }
   }
   constructor() public{
-        addMedicine("Manufacturer 1-M","Medicine 1-1","2019-02-28","2017-03-20");
-        addMedicine("Manufacturer 2-M","Medicine 2-2","2020-05-04","2016-02-20");
-        addMedicine("Manufacturer 3-M","Medicine 1-1","2019-02-25","2017-03-19");
-        addMedicine("Manufacturer 4-C","Medicine 1-1","2019-02-25","2017-03-19");
-        addShipcomp("Company 1","+918140556655","Yes","5");
-        addShipcomp("Company 2","+918140556666","Yes","6");
-        addShipcomp("Company 3","+918142576550","No","5");
-        addShipment("Company 3","Medicine 2-2","No","2019-09-16","2019-09-21");
-        addShipment("Company 1","Medicine 1-1","No","2019-09-16","2019-09-21");
+        addMedicine("Manufacturer1-M","Medicine1-1","2019-02-28","2017-03-20");
+        addMedicine("Manufacturer2-M","Medicine2-2","2020-05-04","2016-02-20");
+        addMedicine("Manufacturer3-M","Medicine1-1","2019-02-25","2017-03-19");
+        addMedicine("Manufacturer4-C","Medicine1-1","2019-02-25","2017-03-19");
+        addShipcomp("Company1","+918140556655","Yes","5");
+        addShipcomp("Company2","+918140556666","Yes","6");
+        addShipcomp("Company3","+918142576550","No","5");
+        addShipment("Company3","Medicine2-2","No","2019-09-16","2019-09-21");
+        addShipment("Company1","Medicine1-1","No","2019-09-16","2019-09-21");
 
     }
 }

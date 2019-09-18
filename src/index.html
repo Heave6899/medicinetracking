@@ -4,10 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Medilab Free Bootstrap HTML5 Template</title>
-  <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-  <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
+  <title>MediChain-Medilab</title>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -23,6 +20,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="contactform/contactform.js"></script>
       <script src="js/truffle-contract.js"></script>
+
 
 <script type="text/javascript" src="js/truffle-contract.js"></script>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -43,12 +41,24 @@
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#banner">Home</a></li>
-                <li class=""><a href="#search">Search Manufacturer</a></li>
-                <li class=""><a href="#searchclient">Search Client</a></li>
-                <li class=""><a href="#formm">Add Manufacturer</a></li>
-                <li class=""><a href="#formc">Add Client</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Functions
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class=""></li><a class="dropdown-item" href="#search" >Search Manufacturer</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#searchclient" >Search Client</a><br></li>
+                    <li class=""></li><div class="dropdown-divider"></div></li>
+                    <li class=""></li><a class="dropdown-item" href="#formm" >Add Manufacturer</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#formc" >Add Client</a><br></li>
+                    <li class=""></li><div class="dropdown-divider"></div></li>
+                    <li class=""></li><a class="dropdown-item" href="#formshipcomp">Add Ship Company</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#formshipment">Add Shipment</a><br></li>
+                  </ul>
+                </li>
+                
                 <li class=""><a href="#cta-2">About</a></li>
-                <li class=""><a href="#contact">Contact</a></li>
+                <li class=""><a href="#ctc">Contact</a></li>
               </ul>
             </div>
           </div>
@@ -88,7 +98,7 @@
             <!-- Search form -->
 <div class="md-form mt-0">
   <form class="form-inline my-2 my-lg-0" style="padding: 3%;">
-  <input class="form-control" type="text" placeholder="Search manufacturer" id="searchbar"aria-label="Search"> <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="App.searchmfg(); return false;">Search</button><!-- searchbar --></form>
+  <input class="form-control" type="text" placeholder="Search manufacturer" id="searchbar"aria-label="Search"> <button class="btn btn-primary" type="button" onClick="App.searchmfg(); return false;">Search</button><!-- searchbar --></form>
   <table class="table table-dark" style="padding: 30%;" id="content">
   	<tr>
       <th>Batch Id</th>
@@ -97,6 +107,7 @@
       <th>Date</th>
       <th>Exp Date</th>
       <th>Expired?</th>
+      <th>Shipped?</th>
     </tr>
     <tbody id="medicinedetails"></tbody>
   </table>
@@ -122,7 +133,7 @@
               <!-- Search form -->
   <div class="md-form mt-0">
     <form class="form-inline my-2 my-lg-0" style="padding: 3%;">
-    <input class="form-control" type="text" placeholder="Search" id="searchbarcli" aria-label="Search"> <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="App.searchclient(); return false;">Search</button><!-- searchbar --></form>
+    <input class="form-control" type="text" placeholder="Search" id="searchbarcli" aria-label="Search"> <button class="btn btn-primary" type="button" onClick="App.searchclient(); return false;">Search</button><!-- searchbar --></form>
     <table class="table table-dark" style="padding: 30%;" id="content-cli">
       <tr>
         <th>Batch Id</th>
@@ -253,7 +264,7 @@
 
   <!--/ about-->
   <!--shipping-->
-  <section id="formm" class="section-padding">
+  <section id="formshipcomp" class="section-padding">
     <div class="container">
       <div class="row" >
         <div class="col-md-4 col-sm-4 bor-left">
@@ -264,7 +275,7 @@
 
         <!--- above is add medicine left column, below is right form medicine -->
         <div class="col-md-6 col-sm-12 bor-right">
-          <form id="formadd" style="align-content: center;">
+          <form id="formshipcomp" style="align-content: center;">
               <div class="form-group row">
                   <label for="namecompany" class="col-sm-5 col-form-label">Name of the Company</label>
                   <div class="col-sm-7">
@@ -274,14 +285,16 @@
             <div class="form-group row">
                   <label for="contact" class="col-sm-5 col-form-label">Customer Care Contact</label>
                   <div class="col-sm-7">
-                      <input type="tel" class="form-control" id="contact" placeholder="(+91)99000-50000" required> 
+                      <input type="text" class="form-control" id="contact" placeholder="(+91)99000-50000" required> 
                   </div>
               </div>
             <div class="form-group row">
-                <label for="tempcontrol" class="col-sm-5 col-form-label">Temperature controlled shipment available</label>
+                <label for="tempcontrolshipmentcompany" class="col-sm-5 col-form-label">Temperature controlled shipment available</label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control" id="tempcontrol" placeholder="Y/N" pattern="[yYnNYesNo]" required> 
-                </div>
+                    <select class="form-control" id="tempcontrolshipmentcompany"> 
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        </select>                </div>
             </div>
             <div class="form-group row">
                 <label for="days" class="col-sm-5 col-form-label">Typical Delivery Time<br>(in Days)</label>
@@ -291,15 +304,81 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-10 offset-sm-2">
-                    <button type="button" class="btn btn-primary" onClick="App.addship();">Confirm Transaction</button>
+                    <button type="button" class="btn btn-primary" onClick="App.addShipcomp();">Confirm Transaction</button>
                 </div>
             </div>
-            <p id="accountAddress"></p>
+            <p id="accountAddress6"></p>
         </div>
       </form>
     </div>
   </section>
   <!--/shipping-->
+  <!--shipment-->
+  <section id="formshipment" class="section-padding">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-4 col-sm-4 bor-left">
+          <h2>Add a Shipment!</h2>
+          <hr class="botm-line">
+          <p style="text-align: justify;">Enter the details of form and click confirm transaction button to add the shipment of existing medicine to the blockchain.</p>
+        </div>
+
+        <div class="col-md-6 col-sm-12 bor-right">
+          <form id="formshipment" style="align-content: center;">
+              <div class="form-group row">
+                  <label for="shipcomplist" class="col-sm-5 col-form-label">Name of the Company</label>
+                  <div class="col-sm-7">
+                      <select class="form-control" id="shipcomplist">
+                      </select>
+                  </div>
+              </div>  
+            <div class="form-group row">
+                  <label for="medlist" class="col-sm-5 col-form-label">Name of Medicine</label>
+                  <div class="col-sm-7">
+                      <select class="form-control" id="medlist">
+                        </select>      
+                        </div>
+              </div>
+              <div class="form-group row">
+                  <label for="medbatch" class="col-sm-5 col-form-label">Batch of Medicine</label>
+                  <div class="col-sm-7">
+                      <select class="form-control" id="medbatch">
+                        </select>      
+                        </div>
+              </div>
+            <div class="form-group row">
+                <label for="tempcontrols" class="col-sm-5 col-form-label">Temperature controlled shipment required?</label>
+                <div class="col-sm-7">
+                  <select class="form-control" id="tempcontrols"> 
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                  </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="datesend" class="col-sm-5 col-form-label">Expected Delivery Date</label>
+                <div class="col-sm-7">
+                    <input type="date" class="form-control" id="datesend" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dateexp" class="col-sm-5 col-form-label">Expected Delivery Date</label>
+                <div class="col-sm-7">
+                    <input type="date" class="form-control" id="dateexp" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="button" class="btn btn-primary" onClick="App.addShipment();">Confirm Transaction</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary" onClick="App.medList();">Get Lists</button>
+                </div>
+            </div>
+            <p id="accountAddress7"></p>
+        </div>
+      </form>
+    </div>
+  </section>
   <!--cta 2-->
   <section id="cta-2" class="section-padding">
     <div class="container">
@@ -316,9 +395,10 @@
       </div>
     </div>
   </section>
+    <!--/shipment-->
   <!--cta-->
   <!--contact-->
-  <section id="contact" class="section-padding">
+  <section id="ctc" class="section-padding">
     <div class="container">
       <div class="row">
         <div class="col-md-12">

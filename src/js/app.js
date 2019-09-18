@@ -2,7 +2,6 @@ App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
-
   init: function(){
     $("#content").hide();
     $("#content-cli").hide();
@@ -16,7 +15,6 @@ App = {
     } else {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       web3 = new Web3(App.web3Provider);
-      //web3.eth.getAccounts(console.log);
     }
     return App.initContract();
   },
@@ -27,11 +25,57 @@ App = {
         App.account = account;
         $("#accountAddress").html("Your Account: " + account);
         $("#accountAddressclient").html("Your Account: " + account);
+        $("#accountAddress6").html("Your Account: " + account);
+        $("#accountAddress7").html("Your Account: " + account);
       }
     });
     $.getJSON("Medicine.json", function(medicine) {
       App.contracts.Medicine = TruffleContract(medicine);
       App.contracts.Medicine.setProvider(App.web3Provider);
+    });
+  },
+  medList:function(){
+    var instance;
+    //$("$medlist").html("");
+    //$("medbatch").html("");
+    App.contracts.Medicine.deployed().then(function(_instance){
+      instance=_instance;
+      return instance.count();
+    }).then(function(count){
+      for(var i=1;i<=count;i++){
+        instance.medicines(i).then(function(medicine){
+          var name = medicine[2];
+          var nameparts = name.split('-');
+          var batch = nameparts[1];
+          var namep = nameparts[0];
+          var ship = medicine[5];
+          console.log(name,namep,batch,ship);
+          var medicinelist = "<option value=" + namep + ">" + namep + "</option>";
+          var batchlist = "<option value=" + batch + ">" + batch + "</option>";
+          if(ship!='Yes'){
+          $("#medlist").append(medicinelist);
+          $("#medbatch").append(batchlist);}
+        });
+      }
+    }).catch(function(err){
+      console.error(err);
+    });
+
+    App.contracts.Medicine.deployed().then(function(_instance){
+      instance = _instance;
+      return instance.countcomp();
+    }).then(function(count){
+      $("#shipcomplist").html("");
+      for(var i=1;i<=count;i++){
+        instance.shipcomps(i).then(function(company){
+          var namec = company[1];
+          console.log(namec);
+          var complist = "<option value=" + namec + ">" + namec + "</option>";
+          $("#shipcomplist").append(complist);
+        });
+      }
+    }).catch(function(err){
+      console.error(err);
     });
   },
   addMed:function(){
@@ -40,6 +84,7 @@ App = {
         App.account = account;
         $("#accountAddress").html("Your Account: " + account);
         $("#accountAddressclient").html("Your Account: " + account);
+    
       }
     });
     var name = $('#medname').val();
@@ -92,7 +137,6 @@ App = {
     var datestr = date.toString();
     var expdatestr = expdate.toString();
     $("#formaddc").trigger("reset");
-    //console.log(datestr);
     App.contracts.Medicine.deployed().then(function(instance){
       return instance.addMedicine(mfg,namestr, expdatestr, datestr, {from: App.account, gas: 2500000 });
     }).catch(function(err){
@@ -101,6 +145,55 @@ App = {
   }
   },
   
+  addShipcomp:function(){
+    web3.eth.getCoinbase(function(err, account) {
+      if (err === null) {
+        App.account = account;
+        $("#accountAddressclient").html("Your Account: " + account);
+      }
+    });
+    var name = $('#namecompany').val();
+    var contact = $('#contact').val();
+    var tempcontrol = $('#tempcontrolshipmentcompany').val();
+    var days = $('#days').val();
+    var days = days.toString();
+    contact = contact.toString();
+    console.log(name,contact,tempcontrol,days);
+    App.contracts.Medicine.deployed().then(function(instance){
+        $("#formshipcomp").trigger("reset");
+        alert("Transaction Success");
+        return instance.addShipcomp(name,contact,tempcontrol,days, {from: App.account, gas: 2500000 });
+        }).catch(function(err){
+        console.error(err);
+        });
+  },
+
+  addShipment:function(){
+    web3.eth.getCoinbase(function(err, account) {
+      if (err === null) {
+        App.account = account;
+        $("#accountAddressclient").html("Your Account: " + account);
+      }
+    });
+    var namecomp = $('#shipcomplist').val();
+    var medicine = $('#medlist').val();
+    var batch = $('#medbatch').val();
+    var tempcontrol = $('#tempcontrols').val();
+    var datesend = $('#datesend').val();
+    datesend = datesend.toString();
+    var dateexpected = $('#dateexp').val();
+    dateexpected = dateexpected.toString();
+    medicine = medicine+"-"+batch;
+    console.log(namecomp,medicine,batch,tempcontrols,datesend,dateexpected);
+    App.contracts.Medicine.deployed().then(function(instance){
+        $("#formshipment").trigger("reset");
+        alert("Transaction Success");
+        return instance.addShipment(namecomp,medicine,tempcontrol,datesend,dateexpected, {from: App.account, gas: 2500000 });
+        }).catch(function(err){
+        console.error(err);
+        });
+  },
+
   searchmfg: function(){
     var instance;
     var med = $("medicines");
@@ -118,6 +211,7 @@ App = {
           var name1 = medicine[2];
           var expdate = medicine[3];
           var date = medicine[4];
+          var shipped = medicine[5];
           var uidp = name1.split('-');
           var uid = uidp[1];
           var name = uidp[0];
@@ -130,7 +224,7 @@ App = {
           var date = medicine[4];
           var expiry = "No";
           if(mydate<today){expiry="Yes";}
-          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td></tr>"
+          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ shipped +"</tr>"
           //console.log(name);
           if(search == name){
             $("#content").show();
@@ -191,5 +285,11 @@ App = {
 $(function() {
   $(window).load(function() {
     App.init();
+    //$("#search").hide();
+    //$("#searchclient").hide();
+    //$("#formm").hide();
+    //$("#formc").hide();
+    //$("#formshipcomp").hide();
+    //$("#formshipment").hide();
   });
 });
