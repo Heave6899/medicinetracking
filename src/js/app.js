@@ -1,3 +1,4 @@
+
 App = {
   web3Provider: null,
   contracts: {},
@@ -36,8 +37,8 @@ App = {
   },
   medList:function(){
     var instance;
-    //$("$medlist").html("");
-    //$("medbatch").html("");
+    $("#medlist").html("");
+    $("#medbatch").html("");
     App.contracts.Medicine.deployed().then(function(_instance){
       instance=_instance;
       return instance.count();
@@ -78,6 +79,42 @@ App = {
       console.error(err);
     });
   },
+  medListcli:function(){
+    var instance;
+    $("#labelnoscli").html("No.of Units");
+    $("medbatchcli").html("");
+    $("#medlistcli").html("");
+    App.contracts.Medicine.deployed().then(function(_instance){
+      instance=_instance;
+      return instance.count();
+    }).then(function(count){
+      for(var i=1;i<=count;i++){
+        instance.countnos(i).then(function(medicine){
+          var name = medicine[0];
+          var nameparts = name.split('-');
+          var batch = nameparts[1];
+          var namep = nameparts[0];
+          var ship = medicine[5];
+          var nos = parseInt(medicine[1]);
+          var man = medicine[1].split('-');
+          var mfg = man[1];
+          var min = nos;
+          var nostemplate = "<br>Max ( " + nos + " units available)"; 
+          //console.log(name,namep,batch,ship);
+          var medicinelist = "<option value=" + namep + ">" + namep + "</option>";
+          var batchlist = "<option value=" + batch + ">" + batch + "</option>";
+          if(nos>0){
+          min=nos;
+          $("#medlistcli").append(medicinelist);
+          $("#medbatchcli").append(batchlist);        
+        }
+        });
+      }
+    }).catch(function(err){
+      console.error(err);
+    });
+  },
+
   addMed:function(){
     web3.eth.getCoinbase(function(err, account) {
       if (err === null) {
@@ -92,6 +129,7 @@ App = {
     var date = $('#meddate').val();
     var expdate = $('#medexpdate').val();
     var uid = $('#meduid').val();
+    var nos = $('#nosmfg').val();
     var name = name + "-" + uid;
     var mfg = mfg1 + "-M";
     console.log(name+" "+date);
@@ -102,11 +140,12 @@ App = {
     else{
     var namestr = name.toString();
     var datestr = date.toString();
+    var nosstr = nos.toString();
     var expdatestr = expdate.toString();
     $("#formadd").trigger("reset");
     console.log(datestr);
     App.contracts.Medicine.deployed().then(function(instance){
-      return instance.addMedicine(mfg,namestr, expdatestr, datestr, {from: App.account, gas: 2500000 });
+      return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosstr,nosstr, {from: App.account, gas: 2500000 });
     }).catch(function(err){
       console.error(err);
     });
@@ -120,14 +159,19 @@ App = {
         $("#accountAddressclient").html("Your Account: " + account);
       }
     });
-    var name = $('#mednamec').val();
+    
+    var name = $('#medlistcli option:selected').val();
     var mfg1 = $('#client').val();
     var date = $('#meddatec').val();
     var expdate = $('#medexpdatec').val();
-    var uid = $('#meduidc').val();
+    var uid = $('#medbatchcli option:selected').val();
     var name = name + "-" + uid;
     var mfg = mfg1 + "-C";
-    //console.log(name+" "+date);
+    var nos = parseInt($('#noscli').val());
+    console.log(nos);
+    var availablenos = parseInt($("#maxcli").text());
+    nosleft = availablenos - nos;
+    console.log(nos);
     if(date>expdate){
       alert("Invalid Expiry Date, cannot be less than manufacturing date");
       $("#formaddc").trigger("reset");
@@ -135,10 +179,13 @@ App = {
     else{
     var namestr = name.toString();
     var datestr = date.toString();
+    var nosleftstr = nosleft.toString();
+    var nosstr = nos.toString();
+    var nosleftstr = nosleft.toString();
     var expdatestr = expdate.toString();
     $("#formaddc").trigger("reset");
     App.contracts.Medicine.deployed().then(function(instance){
-      return instance.addMedicine(mfg,namestr, expdatestr, datestr, {from: App.account, gas: 2500000 });
+      return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosleftstr, nosstr, {from: App.account, gas: 2500000 });
     }).catch(function(err){
       console.error(err);
     });
@@ -184,11 +231,12 @@ App = {
     var dateexpected = $('#dateexp').val();
     dateexpected = dateexpected.toString();
     medicine = medicine+"-"+batch;
+    nos = $('#mednos').val();
     console.log(namecomp,medicine,batch,tempcontrols,datesend,dateexpected);
     App.contracts.Medicine.deployed().then(function(instance){
         $("#formshipment").trigger("reset");
         alert("Transaction Success");
-        return instance.addShipment(namecomp,medicine,tempcontrol,datesend,dateexpected, {from: App.account, gas: 2500000 });
+        return instance.addShipment(namecomp,medicine,tempcontrol,datesend,dateexpected,nos, {from: App.account, gas: 2500000 });
         }).catch(function(err){
         console.error(err);
         });
@@ -204,8 +252,9 @@ App = {
     return instance.count();
     }).then(function(count){
       $("#medicinedetails").html("");
+      var max;
       for(var i=0;i<=count;i++)
-      {
+      { 
         instance.medicines(i).then(function(medicine){
           var mfg = medicine[1];
           var name1 = medicine[2];
@@ -223,18 +272,22 @@ App = {
           var mydate = new Date(parts[0], parts[1] - 1, parts[2]);
           var date = medicine[4];
           var expiry = "No";
+          var nos = medicine[6];
           if(mydate<today){expiry="Yes";}
-          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ shipped +"</tr>"
+          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ shipped +"</td><td>"+ nos +"</tr>"
           //console.log(name);
           if(search == name){
             $("#content").show();
             if(m!='C'){
             $("#medicinedetails").append(medtemplate);
+            max = max - nos;
             }
         }
         });
       }
-    })
+    }).catch(function(err){
+      console.error(err);
+      });
   },
 
   searchclient: function(){
@@ -265,9 +318,10 @@ App = {
           var mydate = new Date(parts[0], parts[1] - 1, parts[2]);
           var date = medicine[4];
           var expiry = "No";
+          var nos = medicine[6]
           if(mydate<today){expiry="Yes";}
-          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td></tr>"
-          console.log(name);
+          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ nos+"</td></tr>"
+          //console.log(nos);
           if(search == name){
             $("#content-cli").show();
             if(m!='M'){
@@ -275,6 +329,89 @@ App = {
             }
         }
         });
+      }
+    }).catch(function(err){
+      console.error(err);
+      });
+ //   App.contracts.Medicine.deployed().then(function(_instance){
+   //   instance=_instance;
+     // return instance.count();
+ //   }).then(function(count){
+   //   for(var i = 0;i<=count;i++)
+    //  {
+   //     instance.countnos(i).then(function(medicine){
+   //       var given = medicine[2];
+   //       var template = "<td>"+ given +"</td></tr>"; 
+   //       var namep = medicine[0].split('-');
+   //       var name = namep[0];
+   //       var batch = namep[1];
+   //       if(search == name){
+   //         $("#medicinedetailsc").append(template);
+   //       }
+   //     });
+   //   }
+   // }).catch(function(err){
+   //     console.error(err);
+   //     });
+  },
+  batchchangecli: function(){
+    var instance;
+    var name = $('#medlistcli option:selected').val();
+    $('#medbatchcli').html('');
+    $('#labelnoscli').html('No. of Units');
+    $('#maxcli').html('');
+    App.contracts.Medicine.deployed().then(function(_instance){
+      instance = _instance;
+      return instance.count();
+    }).then(function(count){
+      var min;
+      for(var i =0;i<=count;i++)
+      {
+        instance.countnos(i).then(function(medicine){
+          var medname = medicine[0];
+          var mednamep = medname.split('-');
+          var medbatch = mednamep[1];
+          var nos = medicine[1];
+          medname = mednamep[0];
+          var nostemplate = "<br>Max ( " + nos + " units available)"; 
+          var medicinebatch = "<option value=" + medbatch + ">" + medbatch + "</option>";
+          if(medname == name){
+            $('#medbatchcli').append(medicinebatch);
+            $('#labelnoscli').append(nostemplate);
+            $('#maxcli').html(nos);
+            //alert(parseInt($('#maxcli').html()));
+          } 
+        })
+      }
+    })
+  },
+
+  batchchange: function(){
+    var instance;
+    var name = $('#medlist option:selected').val();
+    $('#medbatch').html('');
+    $('#maxcli').html('');
+    $('#labelnos').html('No. of Units');
+    App.contracts.Medicine.deployed().then(function(_instance){
+      instance = _instance;
+      return instance.count();
+    }).then(function(count){
+      for(var i =0;i<=count;i++)
+      {
+        instance.countnos(i).then(function(medicine){
+          var medname = medicine[0];
+          var mednamep = medname.split('-');
+          var medbatch = mednamep[1];
+          var nos = medicine[1];
+          medname = mednamep[0];
+          var nostemplate = "<br>Max ( " + nos + " units available)"; 
+          var medicinebatch = "<option value=" + medbatch + ">" + medbatch + "</option>";
+          if(medname == name){
+            $('#medbatch').append(medicinebatch);
+            $('#labelnos').append(nostemplate);
+            $('#maxcli').html(nos);
+          } 
+        })
       }
     })
   }
