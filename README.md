@@ -11,7 +11,9 @@ These dependencies should be installed in order to run this project on your pc.
 
 You can also run the project without installing these dependencies via this:
 ```sh
-install ropsten(jo b cammond hai vo)
+connect metamask to browser
+start the lite server
+npm run dev
 ```
 ### 1.Clone the project
 Clone the project and install all the dependencies.
