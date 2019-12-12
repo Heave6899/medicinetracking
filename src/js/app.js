@@ -1,8 +1,29 @@
-
+ethereum.enable();
+//var Web3EthAbi = require('web3-eth-abi');
 App = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
+  headers: {"Access-Control-Allow-Origin": true,
+  "Access-Control-Allow-Credentials": true,
+  "Access-Control-Allow-Headers": "Content-Type, Accept, X-Requested-With, remember-me"
+          },
+  //jsonFile = ".../package.json",
+  //parsed= JSON.parse(fs.readFileSync(jsonFile)),
+  //abi = parsed.abi,
+  transactionParameters: {
+    nonce: '0x00', // ignored by MetaMask
+    gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
+    gasLimit: '0x2710',  // customizable by user during MetaMask confirmation.
+    //to: '0xD04847C87a72aeCf7BaCbF7eE26f7F6EedDCD2f8', // Required except during contract publications.
+    from: web3.eth.accounts[0], // must match user's active address.
+    value: '0x00', // Only required to send ether to the recipient from the initiating external account.
+    //data: '0x7f7465737432000000000000000000000000000000000000000000000000000000600057', // Optional, but used for defining smart contract creation and interaction.
+    //chainId: 3 // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+  },
+  
+  contractAddress: '0xD04847C87a72aeCf7BaCbF7eE26f7F6EedDCD2f8',
+  //contract: '',
   init: function(){
     $("#content").hide();
     $("#content-cli").hide();
@@ -14,25 +35,42 @@ App = {
       App.web3Provider = web3.currentProvider;
       web3 = new Web3(web3.currentProvider);
     } else {
-      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+      App.web3Provider = new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/96fa1c881e2d49ad8673a053d2cd9f2c');
       web3 = new Web3(App.web3Provider);
+      console.log("connected");
     }
     return App.initContract();
   },
 
   initContract: function() {
+   //web3.eth.getAccounts().then(function(e){ console.log(e)});
+   ethereum.enable()
+   .then(function (accounts) {
+     // You now have an array of accounts!
+     // Currently only ever one:
+     console.log(accounts[0]);
+     App.account=accounts[0];
+     $("#accountAddress").html("Your Account: " + App.account);
+        $("#accountAddressclient").html("Your Account: " + App.account);
+        $("#accountAddress6").html("Your Account: " + App.account);
+        $("#accountAddress7").html("Your Account: " + App.account);
+     // ['0xFDEa65C8e26263F6d9A1B5de9555D2931A33b825']
+   })
+   .catch(function (reason) {
+     // Handle error. Likely the user rejected the login:
+     console.log(reason === "User rejected provider access")
+   });
+   //App.contracts = web3.eth.Contract(contractABI,contractAddress);
     web3.eth.getCoinbase(function(err, account) {
       if (err === null) {
         App.account = account;
-        $("#accountAddress").html("Your Account: " + account);
-        $("#accountAddressclient").html("Your Account: " + account);
-        $("#accountAddress6").html("Your Account: " + account);
-        $("#accountAddress7").html("Your Account: " + account);
+        
       }
     });
     $.getJSON("Medicine.json", function(medicine) {
       App.contracts.Medicine = TruffleContract(medicine);
       App.contracts.Medicine.setProvider(App.web3Provider);
+      console.log(App.web3Provider);
     });
   },
   medList:function(){
@@ -144,8 +182,14 @@ App = {
     var expdatestr = expdate.toString();
     $("#formadd").trigger("reset");
     console.log(datestr);
+    //var getData = App.contracts.Medicine.addMedicine.getData(mfg,namestr, expdatestr, datestr,nosstr,nosstr);
     App.contracts.Medicine.deployed().then(function(instance){
-      return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosstr,nosstr, {from: App.account, gas: 2500000 });
+      //return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosstr,nosstr, {transactionParameters, to: 'Medicine.addMedicine(string,string,string,string,string,string) 0xD04847C87a72aeCf7BaCbF7eE26f7F6EedDCD2f8'});
+      //web3.eth.sendTransaction({to:'Medicine.addMedicine(string,string,string,string,string,string) 0xD04847C87a72aeCf7BaCbF7eE26f7F6EedDCD2f8', from: App.account, data: getData});
+      //var getData = instance.addMedicine(mfg,namestr, expdatestr, datestr,nosstr,nosstr);
+      var getData = web3.eth.abi.encodeParameters(['uint',mfg],['uint',namestr],['uint'.expdatestr],['uint',datestr],['uint',nosstr],['uint',nosstr]);
+      //instance.addMedicine(mfg,namestr, expdatestr, datestr,nosstr,nosstr).send({from: App.account,gas:2500000});
+      web3.eth.sendTransaction({from: App.account, gas: 25000000, data: getData});
     }).catch(function(err){
       console.error(err);
     });
@@ -185,7 +229,10 @@ App = {
     var expdatestr = expdate.toString();
     $("#formaddc").trigger("reset");
     App.contracts.Medicine.deployed().then(function(instance){
-      return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosleftstr, nosstr, {from: App.account, gas: 2500000 });
+      ethereum.enable();
+      //return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosleftstr, nosstr, {from: App.account, gas: 2500000 });
+      //return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosleftstr,nosstr).send({from: App.account,gas:2500000});
+      App.contracts.addMedicine(mfg,namestr, expdatestr, datestr,nosleftstr,nosstr).send({from: App.account,gas:2500000});
     }).catch(function(err){
       console.error(err);
     });
@@ -422,6 +469,8 @@ App = {
 $(function() {
   $(window).load(function() {
     App.init();
+    ethereum.autoRefreshOnNetworkChange = false;
+    ethereum.enable();
     //$("#search").hide();
     //$("#searchclient").hide();
     //$("#formm").hide();
@@ -429,4 +478,7 @@ $(function() {
     //$("#formshipcomp").hide();
     //$("#formshipment").hide();
   });
+});
+ethereum.on('accountsChanged', function (accounts) {
+//location.reload();
 });

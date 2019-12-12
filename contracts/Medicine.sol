@@ -41,7 +41,7 @@ contract Medicine {
   uint public countship;
   bool flag; bool flag1; bool flag2; bool flag3=false;
 
-  function addMedicine(string memory _mfg,string memory _name, string memory _expdate,string memory _date,string memory _nos,string memory _nosgiven) public {
+  function addMedicine(string memory _mfg,string memory _name, string memory _expdate,string memory _date,string memory _nos,string memory _nosgiven) public payable{
         count ++;
         for(uint i = 0;i<=count;i++){
             flag = false;
@@ -59,7 +59,7 @@ contract Medicine {
           countnos[count] = Nos(_name,_nos,_nos);
           }
       }
-  function addShipment(string memory _companyname, string memory _medicinename,string memory _temp,string memory _senddate,string memory _expecteddeliverydate,string memory _nos) public {
+  function addShipment(string memory _companyname, string memory _medicinename,string memory _temp,string memory _senddate,string memory _expecteddeliverydate,string memory _nos) public payable{
     for(uint i = 0;i<=count;i++){
       if((keccak256(abi.encodePacked((_medicinename))) == keccak256(abi.encodePacked((medicines[i].name))))){
         medicines[i].shipped = 'Yes';
@@ -76,7 +76,7 @@ contract Medicine {
       shipments[countship] = Shipment(countship,_companyname,_medicinename,_temp,_senddate,_expecteddeliverydate,_nos);
     }
   }
-  function addShipcomp(string memory _name,string memory _contact, string memory _tempcontrol, string memory _typicaldays) public{
+  function addShipcomp(string memory _name,string memory _contact, string memory _tempcontrol, string memory _typicaldays) public payable{
     flag3 = false;
     if(countcomp == 0)
     {
