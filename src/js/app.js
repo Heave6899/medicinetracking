@@ -422,11 +422,11 @@ App = {
 $(function() {
   $(window).load(function() {
     App.init();
-    //$("#search").hide();
-    //$("#searchclient").hide();
-    //$("#formm").hide();
-    //$("#formc").hide();
-    //$("#formshipcomp").hide();
-    //$("#formshipment").hide();
+    $("#search").hide();
+    $("#searchclient").hide();
+    $("#formm").hide();
+    $("#formc").hide();
+    $("#formshipcomp").hide();
+    $("#formshipment").hide();
   });
 });

@@ -1,48 +1,48 @@
-$("#sman").click(function(){
+function a1(){
     $("#search").show();
     $("#searchclient").hide();
     $("#formm").hide();
     $("#formc").hide();
     $("#formshipcomp").hide();
     $("#formshipment").hide();
-});
-$("#aman").click(function(){
+}
+function a2(){
     $("#search").hide();
     $("#searchclient").hide();
     $("#formm").show();
     $("#formc").hide();
     $("#formshipcomp").hide();
     $("#formshipment").hide();
-});
-$("#scli").click(function(){
+}
+function a3(){
     $("#search").hide();
     $("#searchclient").show();
     $("#formm").hide();
     $("#formc").hide();
     $("#formshipcomp").hide();
     $("#formshipment").hide();
-});
-$("#acli").click(function(){
+}
+function a4(){
     $("#search").hide();
     $("#searchclient").hide();
     $("#formm").hide();
     $("#formc").show();
     $("#formshipcomp").hide();
     $("#formshipment").hide();
-});
-$("#ascomp").click(function(){
+}
+function a5(){
     $("#search").hide();
     $("#searchclient").hide();
     $("#formm").hide();
     $("#formc").hide();
     $("#formshipcomp").show();
     $("#formshipment").hide();
-});
-$("#aship").click(function(){
+}
+function a6(){
     $("#search").hide();
     $("#searchclient").hide();
     $("#formm").hide();
     $("#formc").hide();
     $("#formshipcomp").hide();
     $("#formshipment").show();
-});
+}

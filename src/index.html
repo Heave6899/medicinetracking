@@ -19,7 +19,8 @@
   <script src="js/custom.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="contactform/contactform.js"></script>
-      <script src="js/truffle-contract.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/showhidefn.js"></script>
 
 
 <script type="text/javascript" src="js/truffle-contract.js"></script>
@@ -46,14 +47,14 @@
                     Functions
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li class=""></li><a class="dropdown-item" href="#search" >Search Manufacturer</a><br></li>
-                    <li class=""></li><a class="dropdown-item" href="#searchclient" >Search Client</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#search" id="sman" onclick="a1();">Search Manufacturer</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#searchclient" id="scli" onclick="a3();">Search Client</a><br></li>
                     <li class=""></li><div class="dropdown-divider"></div></li>
-                    <li class=""></li><a class="dropdown-item" href="#formm" >Add Manufacturer</a><br></li>
-                    <li class=""></li><a class="dropdown-item" href="#formc" >Add Client</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#formm" id="aman" onclick="a2();">Add Manufacturer</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#formc" id="acli" onclick="a4();">Add Client</a><br></li>
                     <li class=""></li><div class="dropdown-divider"></div></li>
-                    <li class=""></li><a class="dropdown-item" href="#formshipcomp">Add Ship Company</a><br></li>
-                    <li class=""></li><a class="dropdown-item" href="#formshipment">Add Shipment</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#formshipcomp" id="ascomp" onclick="a5();">Add Ship Company</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#formshipment" id="aship" onclick="a6();">Add Shipment</a><br></li>
                   </ul>
                 </li>
                 
