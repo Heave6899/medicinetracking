@@ -141,11 +141,12 @@ App = {
     var namestr = name.toString();
     var datestr = date.toString();
     var nosstr = nos.toString();
+    var desc = $("#descmfg").val();
     var expdatestr = expdate.toString();
     $("#formadd").trigger("reset");
-    console.log(datestr);
+    //console.log(datestr);
     App.contracts.Medicine.deployed().then(function(instance){
-      return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosstr,nosstr, {from: App.account, gas: 2500000 });
+      return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosstr,nosstr,desc, {from: App.account, gas: 2500000 });
     }).catch(function(err){
       console.error(err);
     });
@@ -185,7 +186,7 @@ App = {
     var expdatestr = expdate.toString();
     $("#formaddc").trigger("reset");
     App.contracts.Medicine.deployed().then(function(instance){
-      return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosleftstr, nosstr, {from: App.account, gas: 2500000 });
+      return instance.addMedicine(mfg,namestr, expdatestr, datestr,nosleftstr, nosstr,'', {from: App.account, gas: 2500000 });
     }).catch(function(err){
       console.error(err);
     });
@@ -274,7 +275,7 @@ App = {
           var expiry = "No";
           var nos = medicine[6];
           if(mydate<today){expiry="Yes";}
-          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td><a href=\"medicinedetails.html?mn="+ name + "\">" + name + "</a></td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ shipped +"</td><td>"+ nos +"</tr>"
+          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td><a href=\"#description\" onClick=\"App.meddetails();\">" + name + "</a></td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ shipped +"</td><td>"+ nos +"</tr>"
           //console.log(name);
           if(search == name){
             $("#content").show();
@@ -320,7 +321,7 @@ App = {
           var expiry = "No";
           var nos = medicine[6]
           if(mydate<today){expiry="Yes";}
-          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td><a href=\"medicinedetails.html?mn="+ name + "\">" + name + "</a></td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ nos+"</td></tr>"
+          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td><a href=\"#description\" onClick=\"App.meddetails();\">" + name + "</a></td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ nos+"</td></tr>"
           //console.log(nos);
           if(search == name){
             $("#content-cli").show();
@@ -333,26 +334,6 @@ App = {
     }).catch(function(err){
       console.error(err);
       });
- //   App.contracts.Medicine.deployed().then(function(_instance){
-   //   instance=_instance;
-     // return instance.count();
- //   }).then(function(count){
-   //   for(var i = 0;i<=count;i++)
-    //  {
-   //     instance.countnos(i).then(function(medicine){
-   //       var given = medicine[2];
-   //       var template = "<td>"+ given +"</td></tr>"; 
-   //       var namep = medicine[0].split('-');
-   //       var name = namep[0];
-   //       var batch = namep[1];
-   //       if(search == name){
-   //         $("#medicinedetailsc").append(template);
-   //       }
-   //     });
-   //   }
-   // }).catch(function(err){
-   //     console.error(err);
-   //     });
   },
   batchchangecli: function(){
     var instance;
@@ -385,7 +366,44 @@ App = {
       }
     })
   },
-
+  meddetails: function(){
+    $("#search").hide();
+    $("#searchclient").hide();
+    $("#formm").hide();
+    $("#formc").hide();
+    $("#formshipcomp").hide();
+    $("#formshipment").hide();
+    $("#description").show();
+    var instance;
+    var search = $('#searchbar').val();
+    var searchcli = $('#searchbarcli').val();
+    if (search!='')
+    $('#namemed').append(search);
+    else
+    $('#namemed').append(searchcli);
+    App.contracts.Medicine.deployed().then(function(_instance){
+    instance =_instance;
+    return instance.count();
+    }).then(function(count){
+      $("#meddets").html("");
+      for(var i=1;i<=count;i++)
+      { 
+        instance.medicines(i).then(function(medicine){
+          var name1 = medicine[2];
+          var uidp = name1.split('-');
+          var name = uidp[0];
+          var desc = medicine[7];
+          var medtemplate = "<textarea rows=\"4\" cols=\"80\" readonly>" +desc+ "</textarea>"
+          //console.log(name)
+          if(search == name || searchcli == name){
+            $("#meddets").append(medtemplate);
+        }
+        });
+      }
+    }).catch(function(err){
+      console.error(err);
+      });
+  },
   batchchange: function(){
     var instance;
     var name = $('#medlist option:selected').val();

@@ -27,6 +27,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+td,tr,th{
+    padding: 2%;
+}
 h1, h2, h3, h4, h5, h6
 {
 	font-family: 'Raleway', sans-serif;
@@ -42,7 +45,9 @@ a, a:hover, a:focus, a:active{
 	padding: 60px 0px;
 
 }
-
+.desc{
+    display: none;
+}
 .section-padding-bottom{
         position: fixed;
         height: 250px;
@@ -123,7 +128,7 @@ banner
     padding: 3%;
     line-height: 30px;
     color: white;
-    border-radius: 20px;
+    border-radius: 2px;
 }
 .dropdown-menu{
     width: 60px;
