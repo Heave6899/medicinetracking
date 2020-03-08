@@ -274,7 +274,7 @@ App = {
           var expiry = "No";
           var nos = medicine[6];
           if(mydate<today){expiry="Yes";}
-          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ shipped +"</td><td>"+ nos +"</tr>"
+          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td><a href=\"medicinedetails.html?mn="+ name + "\">" + name + "</a></td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ shipped +"</td><td>"+ nos +"</tr>"
           //console.log(name);
           if(search == name){
             $("#content").show();
@@ -320,7 +320,7 @@ App = {
           var expiry = "No";
           var nos = medicine[6]
           if(mydate<today){expiry="Yes";}
-          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td>" + name + "</td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ nos+"</td></tr>"
+          var medtemplate = "<tr><th>" +uid+ "</th><td>"+ mfg + "</td><td><a href=\"medicinedetails.html?mn="+ name + "\">" + name + "</a></td><td>" + date + "</td><td>" + expdate + "</td><td>" + expiry + "</td><td>"+ nos+"</td></tr>"
           //console.log(nos);
           if(search == name){
             $("#content-cli").show();

@@ -9,6 +9,7 @@ contract Medicine {
         string date;
         string shipped;
         string nos;
+        string description;
   }
   struct Shipcompany{
         uint id;
@@ -41,13 +42,13 @@ contract Medicine {
   uint public countship;
   bool flag; bool flag1; bool flag2; bool flag3=false;
 
-  function addMedicine(string memory _mfg,string memory _name, string memory _expdate,string memory _date,string memory _nos,string memory _nosgiven) public {
+  function addMedicine(string memory _mfg,string memory _name, string memory _expdate,string memory _date,string memory _nos,string memory _nosgiven,string memory _description) public {
         count ++;
         for(uint i = 0;i<=count;i++){
             flag = false;
             for(uint j = 0;j<=count;j++){
                 if((keccak256(abi.encodePacked((_name))) == keccak256(abi.encodePacked((medicines[j].name))))){
-                medicines[count] = Medicines(count,_mfg, _name, medicines[j].expdate, medicines[j].date,'No',_nosgiven);
+                medicines[count] = Medicines(count,_mfg, _name, medicines[j].expdate, medicines[j].date,'No',_nosgiven,_description);
                 flag = true;
                 countnos[j] = Nos(medicines[j].name,_nos,_nosgiven);
                     break;
@@ -55,7 +56,7 @@ contract Medicine {
             }
           }
           if(flag==false){
-          medicines[count] = Medicines(count,_mfg, _name, _expdate, _date,'No',_nos);
+          medicines[count] = Medicines(count,_mfg, _name, _expdate, _date,'No',_nos,_description);
           countnos[count] = Nos(_name,_nos,_nos);
           }
       }
@@ -98,14 +99,14 @@ contract Medicine {
     }
   }
   constructor() public{
-        addMedicine("Manufacturer1-M","Medicine1-1","2019-02-28","2017-03-20","50",'50');
-        addMedicine("Manufacturer2-M","Medicine2-2","2020-05-04","2016-02-20","100",'100');
-//        addMedicine("Manufacturer3-M","Medicine1-1","2019-02-25","2017-03-19",50);
-//        addMedicine("Manufacturer4-C","Medicine1-1","2019-02-25","2017-03-19",50);
+        addMedicine("Manufacturer1-M","Medicine1-1","2019-02-28","2017-03-20","50",'50','This is a test description of the medicine1');
+        addMedicine("Manufacturer2-M","Medicine2-2","2020-05-04","2016-02-20","100",'100','This is a test description of the medicine2');
+  //addMedicine("Manufacturer3-M","Medicine1-1","2019-02-25","2017-03-19",50);
+    //    addMedicine("Manufacturer4-C","Medicine1-1","2019-02-25","2017-03-19",50);
         addShipcomp("Company1","+918140556655","Yes","5");
         addShipcomp("Company2","+918140556666","Yes","6");
         addShipcomp("Company3","+918142576550","No","5");
-        //addShipment("Company3","Medicine2-2","No","2019-09-16","2019-09-21","20");
-        //addShipment("Company1","Medicine1-1","No","2019-09-16","2019-09-21","20");
+        addShipment("Company3","Medicine2-2","No","2019-09-16","2019-09-21","20");
+        addShipment("Company1","Medicine1-1","No","2019-09-16","2019-09-21","20");
     }
 }

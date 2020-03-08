@@ -42,6 +42,18 @@ a, a:hover, a:focus, a:active{
 	padding: 60px 0px;
 
 }
+
+.section-padding-bottom{
+        position: fixed;
+        height: 250px;
+        background-color: red;
+        bottom: 0px;
+        left: 0px;
+        padding: 60px 0px;
+
+        right: 0px;
+        margin-bottom: 0px;
+}
 h2 {
     line-height: 20px;
     margin: 0;
@@ -176,6 +188,10 @@ banner
 .bg-color{
 	background-color: rgba(89, 158, 71, 0.876);
 	min-height: 650px;
+}
+.bg-color-det{
+    background-color: rgba(89, 158, 71, 0.876);
+    min-height: 85px;
 }
 .banner-info{
 	padding-top: 190px;
