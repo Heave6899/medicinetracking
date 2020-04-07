@@ -11,7 +11,6 @@ These dependencies should be installed in order to run this project on your pc.
 
 You can also run the project without installing these dependencies via this:
 
-```
 ### 1.Clone the project
 Clone the project and install all the dependencies.
 ```sh
