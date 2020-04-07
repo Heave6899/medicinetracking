@@ -10,10 +10,7 @@ These dependencies should be installed in order to run this project on your pc.
 - metamask
 
 You can also run the project without installing these dependencies via this:
-connect metamask to browser
-start the lite server
-```sh
-npm run dev
+
 ```
 ### 1.Clone the project
 Clone the project and install all the dependencies.

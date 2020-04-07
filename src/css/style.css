@@ -8,7 +8,7 @@
 body {
 	font-family: 'Open Sans', sans-serif;
 	line-height: 20px;
-	color: #999999;
+	color: #534b4b;
 	font-size: 300;
 	font-size: 16px;
 }
@@ -31,7 +31,8 @@ h1, h2, h3, h4, h5, h6
 {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 600;
-	color: #222222;
+    color: #201d1d;
+    line-height: 30px;
 }
 a, a:hover, a:focus, a:active{
     outline: none;
@@ -46,15 +47,25 @@ h2 {
     margin: 0;
     font-size: 28px;
     font-weight: 700;
+    line-height: 30px;
     text-transform: uppercase;
 }
 hr.botm-line {
     height: 3px;
     width: 60px;
-    background: #ffb737;
+    background: #ff6105;
     position: relative;
     border: 0;
     margin: 20px 0 20px 0;
+}
+
+.dropdown-divider{
+    height: 2px;
+    border-radius: 20px;
+    background: #9dff00;
+    position: relative;
+    border: 0;
+    
 }
 
 /***************************************
@@ -92,18 +103,34 @@ banner
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-    color: #EA6045;
+    color: rgb(219, 48, 14);
 }
+
+.dropdown-item,.dropdown-menu{
+    background-color: #534b4b;
+    padding: 3%;
+    line-height: 30px;
+    color: white;
+    border-radius: 20px;
+}
+.dropdown-menu{
+    width: 60px;
+}
+.dropdown-item:hover{
+    color: #e09696;
+}
+
+
 
 @media (max-width: 768px) {
 	.navbar-collapse {
-		background: rgba(28,74,90, 0.9);
+		background: rgba(137, 185, 49, 0.9);
 	}
 }
 
 .top-nav-collapse {
     padding: 0;
-    background: rgba(28,74,90, 0.9);
+    background: rgba(137, 156, 101, 0.9);
 }
 
 .white, .white:hover, .white:focus
@@ -118,7 +145,7 @@ banner
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
     color: #fff;
     text-transform: uppercase;
-    background-color: rgba(12, 184, 182, 0.21);
+    background-color: rgba(137, 185, 49, 0.21);
 }
 .navbar-default .navbar-nav > li > a
 {
@@ -138,7 +165,7 @@ banner
 }
 .affix .navbar-nav > li > a:hover, .affix .navbar-nav > li > a:focus
 {
-    background-color: rgba(12, 184, 182) !important;
+    background-color: rgb(108, 131, 31) !important;
 }
 #banner{
 	background: url('../img/bg-banner.jpg') no-repeat fixed;
@@ -147,7 +174,7 @@ banner
 	position: relative;
 }
 .bg-color{
-	background-color: RGBA(13, 70, 83, 0.78);
+	background-color: rgba(89, 158, 71, 0.876);
 	min-height: 650px;
 }
 .banner-info{
@@ -169,7 +196,7 @@ banner
 	margin-top: 30px;
 	padding: 10px 20px;
 	font-size: 12px;
-	background-color: rgba(12, 184, 182, 0.91);
+	background-color: rgba(65, 233, 101, 0.91);
 	border-radius: 3px;
 	color: #fff;
 }
@@ -243,7 +270,7 @@ td {
 about
 ***************************************/
 #about{
-    background-color: rgba(238, 238, 238, 0.15);
+    background-color: rgba(230, 118, 118, 0.15);
 }
 .lg-line{
 	line-height: 1.4;
@@ -356,7 +383,7 @@ testimonial
 cta -2
 ***************************************/
 #cta-2{
-	background-color: rgb(41, 48, 46);
+	background-color: rgb(170, 197, 155);
 }
 .white{
 	color: #fff;
@@ -371,7 +398,7 @@ cta -2
 	display: block;
 }
 .text-primary {
-    color: #0cb8b6;
+    color: #2a3838;
 }
 .icon-mar
 {
@@ -382,6 +409,9 @@ contact us
 ***************************************/
 .space {
     margin-top: 40px;
+}
+.btn{
+    background-color: rgb(185, 122, 41)
 }
 .btn-form, .btn-form:hover, .btn-form:focus {
     background-color: #0cb8b6;
@@ -433,7 +463,7 @@ contact us
 footer
 ***************************************/
 #footer{
-	background-color: #325C6A;
+	background-color: #AAC59B
 }
 .ftr-tle {
     height: 50px;
