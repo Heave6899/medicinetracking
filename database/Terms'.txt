@@ -1,0 +1,72 @@
+ACEAngiotensin-converting enzyme
+AED means Automated External Defibrillator
+AMS means Altered Mental Status
+ANA Antinuclear antibody 
+AOM Acute otitis media 
+ARB sangiotensin II receptor blockers 
+ASA Acetylsalicylic Acid
+BDP Beclometasone dipropionate 
+BG Blood Glucose
+BP Blood Pressure
+BUDBudesonide 
+CCC means Continuous Cardiac Compressions
+CHF means Congestive Heart Failure
+CBC Complete blood count 
+COPD means Chronic Obstructive Pulmonary Disease
+CN cranial nerve 
+CNS central nervous system 
+CP means Chest Pain
+CPR means Cardiopulmonary Resuscitation
+CVA means Cardiovascular Accident
+DMDiabetes mellitus 
+GDM Gestational diabetes mellitus 
+DPIDry powder inhaler 
+ECG means Electrocardiogram
+ED emergency department 
+EMS emergency medical system 
+ETA means Estimated Time of Arrival
+FEV1 Forced expiratory volume in 1 second 
+FVCForced vital capacity 
+GDM Gestational diabetes mellitus 
+HEENT means Head, Ears, Eyes, Nose, ThroatHib Haemophilus influenzae type 
+bHR means Heart Rate
+HSV herpes simplex virus 
+ICSInhaled corticosteroids 
+IM means Intramuscular
+IV means Intravenous
+IVP means Intravenous Push
+LABA Long-acting beta2-agonists 
+MEEmiddle ear effusion 
+MI means Myocardial InfarctionNS means Normal Saline
+NSAIDnonsteroidal anti-inflammatory drug
+NV means Nausea/VomitingO2Oxygen 
+OCS Oral corticosteroids 
+5OGTT Oralglucose tolerance test 
+OM Otitis media 
+OMEOtitis mediawith effusion 
+ORT oral rehydration therapy 
+PCI means Percutaneous Coronary Intervention
+PCR means Patient Care Record/Report
+PEFPeak expiratory flow 
+PEM protein-energy malnutrition 
+pMDI Pressurized metered dose inhaler 
+PO means By Mouth
+PRN means As Needed 
+q means Every
+ROSC means Return of Spontaneous Circulation
+RR means Respiratory Rate
+SABA Short-acting beta2-agonists
+SBI serious bacterial infections 
+SE Status epilepticus 
+SL means Sublingual
+SOB means Shortness of Breath 
+S/S means Signs/Symptoms
+SVT means Supraventricular Tachycardia
+TBSA total body surface area
+TM tympanic membrane 
+URI Upper respiratory tract infection 
+UTI urinary tract infection
+VF means Ventricular Fibrillation
+VS means Vital Signs
+VT means Ventricular Tachycardia
+WPW means Wolff‐Parkinson‐White Syndrome
