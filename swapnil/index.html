@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MediChain-Medilab</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+ 
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+<script src="js/jquery.min.js"></script>
+  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="contactform/contactform.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/showhidefn.js"></script>
+
+
+<script type="text/javascript" src="js/truffle-contract.js"></script>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <!--banner-->
+  <section id="banner" class="banner">
+    <div class="bg-color">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="col-md-12">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+              <a class="navbar-brand" href="#"><img src="img/logo.png" class="img-responsive" style="width: 140px; margin-top: -16px;"></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#banner">Home</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Functions
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class=""></li><a class="dropdown-item" href="#search" id="sman" onclick="a1();">Search Manufacturer</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#searchclient" id="scli" onclick="a3();">Search Client</a><br></li>
+                    <li class=""></li><div class="dropdown-divider"></div></li>
+                    <li class=""></li><a class="dropdown-item" href="#formm" id="aman" onclick="a2();">Add Manufacturer</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#formc" id="acli" onclick="a4();">Add Client</a><br></li>
+                    <li class=""></li><div class="dropdown-divider"></div></li>
+                    <li class=""></li><a class="dropdown-item" href="#formshipcomp" id="ascomp" onclick="a5();">Add Ship Company</a><br></li>
+                    <li class=""></li><a class="dropdown-item" href="#formshipment" id="aship" onclick="a6();">Add Shipment</a><br></li>
+                  </ul>
+                </li>
+                
+                <li class=""><a href="#cta-2">About</a></li>
+                <li class=""><a href="#login">Login</a></li>
+                <li class=""><a href="#ctc">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+          <div class="banner-info">
+            <div class="banner-logo text-center">
+              <img src="img/logo.png" class="img-responsive">
+            </div>
+            <div class="banner-text text-center">
+              <h1 class="white">Blockchain at it's best!!</h1>
+              <p>Something. New.</p>
+              <a href="#ctc" class="btn btn-appoint">Remarks.</a>
+            </div>
+            <div class="overlay-detail text-center">
+              <a href="#search"><i class="fa fa-angle-down"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Description-->
+  <section class="desc section-padding" id="description">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-5">
+          <h2 class="ser-title" style="padding: 3%;">Medicine Details</h2>
+          <hr class="botm-line">
+          <p style="text-align: justify">Here on the right is the details of the medicine!</p>
+        </div>
+        <div class="col-md-7 col-sm-5">
+          
+            <!-- Search form -->
+<div class="md-form mt-0">
+  <table class="table-dark table" style="padding: 12%;" id="content-det">
+  	<tr>
+      <th>Name of Medicine</th> <td id="namemed"></td>
+    </tr>
+    <tr>    
+      <th>Description</th>
+      <td id="meddets"></td>
+    </tr>
+  </table>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ banner-->
+  <!--search mfg-->
+  <section id="search" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-5">
+          <h2 class="ser-title" style="padding: 3%;">Search For MFG.</h2>
+          <hr class="botm-line">
+          <p style="text-align: justify">Type in the exact name of the medicine to find if the manufacturers of the given medicine is available in the database</p>
+        </div>
+        <div class="col-md-7 col-sm-5">
+          
+            <!-- Search form -->
+<div class="md-form mt-0">
+  <form class="form-inline my-2 my-lg-0" style="padding: 3%;">
+  <input class="form-control" type="text" placeholder="Search manufacturer" id="searchbar"aria-label="Search"> <button class="btn btn-primary" type="button" onClick="App.searchmfg(); return false;">Search</button><!-- searchbar --></form>
+  <table class="table table-dark" style="padding: 30%;" id="content">
+  	<tr>
+      <th>Batch Id</th>
+      <th>Manufacturer</th>
+      <th>Medicine Name</th>
+      <th>Date</th>
+      <th>Exp Date</th>
+      <th>Expired?</th>
+      <th>Shipped?</th>
+      <th>Units Mfg.</th>
+    </tr>
+    <tbody id="medicinedetails"></tbody>
+  </table>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--/search mfg-->
+  <!--search client-->
+  <section id="searchclient" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <h2 class="ser-title">Search For Client</h2>
+            <hr class="botm-line">
+            <p style="text-align: justify;">Type in the exact name of the medicine to find if all the clients of the given medicine is available in the database</p>
+          </div>
+          <div class="col-md-7 col-sm-5">
+            <p id="maxcli" style="display: none;"></p>
+              <!-- Search form -->
+  <div class="md-form mt-0">
+    <form class="form-inline my-2 my-lg-0" style="padding: 3%;">
+    <input class="form-control" type="text" placeholder="Search" id="searchbarcli" aria-label="Search"> <button class="btn btn-primary" type="button" onClick="App.searchclient(); return false;">Search</button><!-- searchbar --></form>
+    <table class="table table-dark" style="padding: 30%;" id="content-cli">
+      <tr>
+        <th>Batch Id</th>
+        <th>Client Name</th>
+        <th>Medicine Name</th>
+        <th>Date</th>
+        <th>Exp Date</th>
+        <th>Expired?</th>
+        <th>Units Given</th>
+      </tr>
+      <tbody id="medicinedetailsc"></tbody>
+    </table>
+  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!--/ search client-->
+  <!--about-->
+  <section id="formm" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 bor-left">
+          <h2>Add a Manufacturer!</h2>
+          <hr class="botm-line">
+          <p style="text-align: justify;">Enter the details of form and click confirm transaction button to add the manufacturer to the blockchain.</p>
+        </div>
+
+        <!--- above is add medicine left column, below is right form medicine -->
+        <div class="col-md-6 col-sm-12 bor-right">
+          <form id="formadd">
+              <div class="form-group row">
+                  <label for="meduid" class="col-sm-5 col-form-label">Batch Id</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="meduid" placeholder="Batch Id" required>
+                  </div>
+              </div>  
+            <div class="form-group row">
+                  <label for="manufacturer" class="col-sm-5 col-form-label">Manufacturer</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="manufacturer" placeholder="Manufacturer Name" required> 
+                  </div>
+              </div>
+            <div class="form-group row">
+                <label for="medname" class="col-sm-5 col-form-label">Name of Medicine</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="medname" placeholder="Medicine Name" required> 
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="meddate" class="col-sm-5 col-form-label">Date Mfg.</label>
+                <div class="col-sm-7">
+                    <input type="date" class="form-control" id="meddate" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="medexpdate" class="col-sm-5 col-form-label">Date Exp.</label>
+                <div class="col-sm-7">
+                    <input type="date" class="form-control" id="medexpdate" required>
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="nosmfg" class="col-sm-5 col-form-label">No. of Units</label>
+              <div class="col-sm-7">
+                  <input type="number" class="form-control" id="nosmfg" required>
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="descmfg" class="col-sm-5 col-form-label">Description of Medicine (if new)</label>
+            <div class="col-sm-7">
+                <textarea class="form-control" id="descmfg" required></textarea>
+            </div>
+        </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="button" class="btn btn-primary" onClick="App.addMed();">Confirm Transaction</button>
+                </div>
+            </div>
+            <p id="accountAddress"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!--/form mfg-->
+  <!--form client-->
+  <section id="formc" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 bor-left">
+            <h2>Add a Client!</h2>
+            <hr class="botm-line">
+            <p style="text-align: justify;">Enter the details of form and click confirm transaction button to add the client to the blockchain.</p>
+          </div>
+  
+          <!--- above is add medicine left column, below is right form medicine -->
+          <div class="col-md-6 col-sm-12 bor-right">
+            <form id="formaddc">
+                
+              <div class="form-group row">
+                    <label for="client" class="col-sm-5 col-form-label">Name of the Client</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="client" placeholder="Client Name" required> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label for="medlistcli" class="col-sm-5 col-form-label">Name of Medicine</label>
+                  <div class="col-sm-7">
+                      <select class="form-control" id="medlistcli" onChange="App.batchchangecli();">
+                        </select>      
+                        </div>
+              </div>
+              <div class="form-group row">
+                <label for="medbatchcli" class="col-sm-5 col-form-label">Batch Id</label>
+                <div class="col-sm-7">
+                    <select class="form-control" id="medbatchcli">
+                      </select>      
+                      </div>
+              </div>
+              <div class="form-group row">
+                  <label for="meddatec" class="col-sm-5 col-form-label">Date Mfg.</label>
+                  <div class="col-sm-7">
+                      <input type="date" class="form-control" id="meddatec" required>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label for="medexpdatec" class="col-sm-5 col-form-label">Date Exp.</label>
+                  <div class="col-sm-7">
+                      <input type="date" class="form-control" id="medexpdatec" required>
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="noscli" class="col-sm-5 col-form-label" id="labelnoscli">No. of Units</label>
+                <div class="col-sm-7">
+                    <input type="number" class="form-control" id="noscli" required>
+                </div>
+            </div>
+              <div class="form-group row">
+                  <div class="col-sm-10 offset-sm-2">
+                      <button type="button" class="btn btn-primary" onClick="App.addClient();">Confirm Transaction</button>
+                      &nbsp;&nbsp;
+                      <button type="button" class="btn btn-primary" onClick="App.medListcli();">Get Lists</button>  
+                  </div>
+              </div>
+              <p id="accountAddressclient"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+    </section>
+
+
+  <!--/ about-->
+  <!--shipping-->
+  <section id="formshipcomp" class="section-padding">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-4 col-sm-4 bor-left">
+          <h2>Add a Shipment company!</h2>
+          <hr class="botm-line">
+          <p style="text-align: justify;">Enter the details of form and click confirm transaction button to add the shipment company to the blockchain.</p>
+        </div>
+
+        <!--- above is add medicine left column, below is right form medicine -->
+        <div class="col-md-6 col-sm-12 bor-right">
+          <form id="formshipcomp" style="align-content: center;">
+              <div class="form-group row">
+                  <label for="namecompany" class="col-sm-5 col-form-label">Name of the Company</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="namecompany" placeholder="Name of company" required>
+                  </div>
+              </div>  
+            <div class="form-group row">
+                  <label for="contact" class="col-sm-5 col-form-label">Customer Care Contact</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="contact" placeholder="(+91)99000-50000" required> 
+                  </div>
+              </div>
+            <div class="form-group row">
+                <label for="tempcontrolshipmentcompany" class="col-sm-5 col-form-label">Temperature controlled shipment available</label>
+                <div class="col-sm-7">
+                    <select class="form-control" id="tempcontrolshipmentcompany"> 
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                        </select>                </div>
+            </div>
+            <div class="form-group row">
+                <label for="days" class="col-sm-5 col-form-label">Typical Delivery Time<br>(in Days)</label>
+                <div class="col-sm-7">
+                    <input type="number" class="form-control" id="days" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="button" class="btn btn-primary" onClick="App.addShipcomp();">Confirm Transaction</button>
+                </div>
+            </div>
+            <p id="accountAddress6"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!--/shipping-->
+  <!--shipment-->
+  <section id="formshipment" class="section-padding">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-4 col-sm-4 bor-left">
+          <h2>Add a Shipment!</h2>
+          <hr class="botm-line">
+          <p style="text-align: justify;">Enter the details of form and click confirm transaction button to add the shipment of existing medicine to the blockchain.</p>
+        </div>
+
+        <div class="col-md-6 col-sm-12 bor-right">
+          <form id="formshipment" style="align-content: center;">
+              <div class="form-group row">
+                  <label for="shipcomplist" class="col-sm-5 col-form-label">Name of the Company</label>
+                  <div class="col-sm-7">
+                      <select class="form-control" id="shipcomplist">
+                      </select>
+                  </div>
+              </div>  
+            <div class="form-group row">
+                  <label for="medlist" class="col-sm-5 col-form-label">Name of Medicine</label>
+                  <div class="col-sm-7">
+                      <select class="form-control" id="medlist" onChange="App.batchchange();">
+                        </select>      
+                        </div>
+              </div>
+              <div class="form-group row">
+                  <label for="medbatch" class="col-sm-5 col-form-label">Batch of Medicine</label>
+                  <div class="col-sm-7">
+                      <select class="form-control" id="medbatch">
+                        </select>      
+                        </div>
+              </div>
+            <div class="form-group row">
+                <label for="tempcontrols" class="col-sm-5 col-form-label">Temperature controlled shipment required?</label>
+                <div class="col-sm-7">
+                  <select class="form-control" id="tempcontrols"> 
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                  </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="datesend" class="col-sm-5 col-form-label">Expected Delivery Date</label>
+                <div class="col-sm-7">
+                    <input type="date" class="form-control" id="datesend" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dateexp" class="col-sm-5 col-form-label">Expected Delivery Date</label>
+                <div class="col-sm-7">
+                    <input type="date" class="form-control" id="dateexp" required>
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="mednos" class="col-sm-5 col-form-label" id="labelnos">No. of Units</label>
+              <div class="col-sm-7">
+                  <input type="number" class="form-control" id="mednos" required>
+              </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="button" class="btn btn-primary" onClick="App.addShipment();">Confirm Transaction</button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary" onClick="App.medList();">Get Lists</button>
+                </div>
+            </div>
+            <p id="accountAddress7"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+<!--Login-->
+  <section id="login" class="section-padding">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-4 col-sm-4 bor-left">
+          <h2>Login</h2>
+          <hr class="botm-line">
+          <p style="text-align: justify;">Enter the details of form to login </p>
+        </div>
+
+        <!--- above is add medicine left column, below is right form medicine -->
+        <div class="col-md-6 col-sm-12 bor-right">
+          <form id="login" style="align-content: center;" action="/userlogin" method="POST">
+              <div class="form-group row">
+                  <label for="namecompany" class="col-sm-5 col-form-label">Username</label>
+                  <div class="col-sm-7">
+                      <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                  </div>
+              </div>  
+            <div class="form-group row">
+                  <label for="contact" class="col-sm-5 col-form-label">Password</label>
+                  <div class="col-sm-7">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="*******" required> 
+                  </div>
+              </div>
+              
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button type="submit" class="btn btn-primary" >Login</button>
+                </div>
+            </div>
+            <p id="accountAddress6"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!--cta 2-->
+  <section id="cta-2" class="section-padding">
+    <div class="container">
+      <div class=" row">
+        <div class="col-md-2"></div>
+        <div class="text-right-md col-md-4 col-sm-4">
+          <h2 class="section-title white lg-line">« About<br> the team »</h2>
+        </div>
+        <div class="col-md-4 col-sm-5">
+          This is a Mini Project by Khushi Barot and Vansh Patel, under the guidance of Prof. Sharda Valiveti. The title of the project is medicine tracking, so using blockchain, we have created a system capable of storing medicines, using blockchain to decentralize and enhancing the transparency of tracking medicines. 
+          <p class="text-right text-primary"><i>— MediChain</i></p>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </section>
+    <!--/shipment-->
+  <!--cta-->
+  <!--contact-->
+  <section id="ctc" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="ser-title">Contact us</h2>
+          <hr class="botm-line">
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <h3>Contact Info</h3>
+          <div class="space"></div>
+          <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i>321 Awesome Street<br> New York, NY 17022</p>
+          <div class="space"></div>
+          <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>info@companyname.com</p>
+          <div class="space"></div>
+          <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+1 800 123 1234</p>
+        </div>
+        <div class="col-md-8 col-sm-8 marb20">
+          <div class="contact-info">
+            <h3 class="cnt-ttl">If you have any remarks, shoot!</h3>
+            <div class="space"></div>
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <div id="errormessage"></div>
+            <form action="" method="post" role="form" class="contactForm">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control br-radius-zero" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control br-radius-zero" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control br-radius-zero" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control br-radius-zero" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validation"></div>
+              </div>
+
+              <div class="form-action">
+                <button type="submit" class="btn btn-form" onClick="return false;">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ contact-->
+  <!--footer-->
+  <footer id="footer">
+    <div class="top-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 marb20">
+            <div class="ftr-tle">
+              <h4 class="white no-padding">About Us</h4>
+            </div>
+            <div class="info-sec">
+              <p>Praesent convallis tortor et enim laoreet, vel consectetur purus latoque penatibus et dis parturient.</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 marb20">
+            <div class="ftr-tle">
+              <h4 class="white no-padding">Quick Links</h4>
+            </div>
+            <div class="info-sec">
+              <ul class="quick-info">
+                <li><a href="#myPage"><i class="fa fa-circle"></i>Home</a></li>
+                <li><a href="#search"><i class="fa fa-circle"></i>Search Manufacturer</a></li>
+                <li><a href="#searchclient"><i class="fa fa-circle"></i>Search Client</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 marb20">
+            <div class="ftr-tle">
+              <h4 class="white no-padding">Follow us</h4>
+            </div>
+            <div class="info-sec">
+              <ul class="social-icon">
+                <li class="bglight-blue"><i class="fa fa-facebook"></i></li>
+                <li class="bgred"><i class="fa fa-google-plus"></i></li>
+                <li class="bgdark-blue"><i class="fa fa-linkedin"></i></li>
+                <li class="bglight-blue"><i class="fa fa-twitter"></i></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--/ footer-->
+
+  
+</body>
+
+</html>

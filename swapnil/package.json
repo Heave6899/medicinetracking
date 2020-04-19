@@ -1,0 +1,36 @@
+{
+  "name": "nmis",
+  "version": "1.0.0",
+  "description": "nirma information management system",
+  "main": "login.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "information",
+    "management",
+    "system"
+  ],
+  "author": "rutvik borad, swapnil chadotra",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "calendar": "^0.1.1",
+    "cldr ": ">=1.0.2",
+    "connect-multiparty": "^2.2.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
+    "express-session": "^1.17.0",
+    "http": "0.0.0",
+    "multipart": "^0.1.5",
+    "mysql": "^2.18.1",
+    "node-calendar": "^0.1.5",
+    "nodemailer": "^6.4.6",
+    "passport": "^0.4.1",
+    "path": "^0.12.7",
+    "routes": "^2.1.0",
+    "then-busboy": "^4.4.0",
+    "views": "^1.0.2"
+  }
+}
